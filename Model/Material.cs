@@ -9,7 +9,7 @@ namespace Organizador_Apollo.Model
         [AutoIncrement]
         [NotNull]
         public int Id { get; set; }
-        public byte[]? Image { get; set; }
+        public string? ImagePath { get; set; }
         [NotNull]
         public string? Name { get; set; }
         public  string? TypeMeasure { get; set; }

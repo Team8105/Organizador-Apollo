@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:Organizador_Apollo.Model"
+             xmlns:viewmodel="clr-namespace:Organizador_Apollo.ViewModels"
+             x:DataType="viewmodel:MaterialsViewModel"
              x:Class="Organizador_Apollo.Views.Materials"
-             Title="Materials">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Materiales">
+    <Shell.TitleView>
+        <StackLayout>
+            <Button Text="ADD" HeightRequest="50" WidthRequest="100" HorizontalOptions="End"></Button>
+        </StackLayout>
+    </Shell.TitleView>
+    <CollectionView x:Name="MaterialsCollectionView"
+        EmptyView="No hay materiales registrados"
+        ItemsSource="{Binding Materials}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <SwipeView>
+                    <SwipeView.RightItems>
+                        <SwipeItem Text="Eliminar"
+                        IconImageSource="delete.svg"
+                        BackgroundColor="Red"
+                        Command="{Binding Source={x:Reference MaterialsCollectionView}, Path=BindingContext.DeleteCommand}"/>
+                    </SwipeView.RightItems>
+                </SwipeView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>
